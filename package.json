@@ -1,6 +1,9 @@
 {
-	"dependencies": {
-		"benchmark": "latest",
-		"microtime": "^3.0.0"
-	}
+  "scripts": {
+    "bench": "node suites.js"
+  },
+  "dependencies": {
+    "benchmark": "latest",
+    "microtime": "^3.0.0"
+  }
 }
