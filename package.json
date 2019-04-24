@@ -1,5 +1,9 @@
 {
   "scripts": {
+    "build-js": "cd subjects/js-example && npm install",
+    "build-neon": "cd subjects/neon-example && neon build --release",
+    "build-wasm-pack": "cd subjects/wasm-pack-example && wasm-pack build --target nodejs --scope wix --out-name index",
+    "build-subjects": "npm run build-js && npm run build-neon && npm run build-wasm-pack",
     "bench": "node suites.js"
   },
   "dependencies": {
