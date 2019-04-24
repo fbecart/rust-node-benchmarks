@@ -1,0 +1,14 @@
+{
+  "name": "neon-example",
+  "version": "0.1.0",
+  "description": "Experimentation with the neon toolkit",
+  "main": "lib/index.js",
+  "author": "Florent Bécart <florentb@wix.com>",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.2.0"
+  },
+  "scripts": {
+    "install": "neon build"
+  }
+}
