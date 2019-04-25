@@ -2,6 +2,9 @@ const Benchmark = require('benchmark');
 const report = require('beautify-benchmark');
 const _ = require('lodash');
 const numeral = require('numeral');
+const fs = require('fs');
+
+const exampleToml = fs.readFileSync('./data/example.toml', 'utf8');
 
 const subjects = {
   'js': require('./subjects/js-example'),
@@ -13,6 +16,7 @@ const benchedFunctions = {
   'sum': s => s.sum(1, 2),
   'sha1': s => s.sha1('pls-sha1-me'),
   'fibonacci': s => s.fibonacci(10000),
+  'parse TOML': s => s.readFieldFromToml(exampleToml, 'title'),
 };
 
 for (const functionName of Object.keys(benchedFunctions)) {

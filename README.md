@@ -35,3 +35,7 @@ It definitely isn't as fast as the what the `crypto` node module would provide, 
 ### `fibonacci`
 
 Naive procedural implementation of the fibonacci suite.
+
+### `parse TOML`
+
+Parses a TOML string to extract the value of a specific field.

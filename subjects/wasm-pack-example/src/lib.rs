@@ -1,4 +1,5 @@
 extern crate crypto;
+extern crate toml;
 
 use wasm_bindgen::prelude::*;
 use self::crypto::digest::Digest;
@@ -25,6 +26,14 @@ pub fn fibonacci(n: usize) -> i32 {
         b = sum;
     }
     b
+}
+
+#[wasm_bindgen(js_name = "readFieldFromToml")]
+pub fn read_field_from_toml(toml_string: &str, field_name: &str) -> String {
+    let toml_value = toml_string.parse::<toml::Value>().unwrap();
+    toml_value[field_name].as_str()
+        .expect(&format!("Field {} not found in provided TOML", field_name))
+        .to_owned()
 }
 
 #[cfg(test)]

@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate neon;
 extern crate crypto;
+extern crate toml;
 
 use neon::prelude::*;
 use self::crypto::digest::Digest;
@@ -31,8 +32,18 @@ fn fibonacci(mut cx: FunctionContext) -> JsResult<JsNumber> {
     Ok(cx.number(b))
 }
 
+fn read_field_from_toml(mut cx: FunctionContext) -> JsResult<JsString> {
+    let toml_string = cx.argument::<JsString>(0)?.value();
+    let field_name = cx.argument::<JsString>(1)?.value();
+    let toml_value = toml_string.parse::<toml::Value>().unwrap();
+    let field_value = toml_value[&field_name].as_str()
+        .expect(&format!("Field {} not found in provided TOML", field_name));
+    Ok(cx.string(field_value))
+}
+
 register_module!(mut cx, {
     cx.export_function("sum", sum)?;
     cx.export_function("sha1", sha1)?;
-    cx.export_function("fibonacci", fibonacci)
+    cx.export_function("fibonacci", fibonacci)?;
+    cx.export_function("readFieldFromToml", read_field_from_toml)
 });

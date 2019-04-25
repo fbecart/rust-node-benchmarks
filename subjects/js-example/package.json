@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "rusha": "^0.8.13"
+    "rusha": "^0.8.13",
+    "toml": "^3.0.0"
   }
 }

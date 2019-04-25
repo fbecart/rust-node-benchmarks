@@ -1,4 +1,5 @@
 const Rusha = require('rusha');
+const tomlParser = require('toml');
 
 function sum(a, b) {
   return a + b;
@@ -20,8 +21,14 @@ function fibonacci(n) {
   return b;
 }
 
+function readFieldFromToml(tomlString, fieldName) {
+  const data = tomlParser.parse(tomlString);
+  return data[fieldName];
+}
+
 module.exports = {
   sum,
   sha1,
   fibonacci,
+  readFieldFromToml,
 };
