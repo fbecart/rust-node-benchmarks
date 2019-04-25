@@ -7,7 +7,10 @@
     "bench": "node suites.js"
   },
   "dependencies": {
+    "beautify-benchmark": "^0.2.4",
     "benchmark": "latest",
-    "microtime": "^3.0.0"
+    "lodash": "^4.17.11",
+    "microtime": "^3.0.0",
+    "numeral": "^2.0.6"
   }
 }
