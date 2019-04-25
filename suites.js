@@ -8,8 +8,9 @@ const exampleToml = fs.readFileSync('./data/example.toml', 'utf8');
 
 const subjects = {
   'js': require('./subjects/js-example'),
-  'ffi': require('./subjects/neon-example/lib'),
-  'wasm': require('./subjects/wasm-pack-example/pkg'),
+  'rust-ffi': require('./subjects/neon-example/lib'),
+  'rust-wasm': require('./subjects/wasm-pack-example/pkg'),
+  'ts-wasm': require('./subjects/assemblyscript-example'),
 };
 
 const benchedFunctions = {
@@ -20,7 +21,7 @@ const benchedFunctions = {
 };
 
 for (const functionName of Object.keys(benchedFunctions)) {
-  console.log(`${functionName}:\n`);
+  console.log(`== ${functionName} ==\n`);
 
   const suite = new Benchmark.Suite;
   for (const subjectName of Object.keys(subjects)) {
@@ -37,7 +38,7 @@ for (const functionName of Object.keys(benchedFunctions)) {
 }
 
 function logComparison(report) {
-  const benches = _.sortBy(report.store, bench => -bench.hz);
+  const benches = _.sortBy(report.store.filter(bench => bench.hz), bench => -bench.hz);
   console.log(`  ${benches[0].name} was the fastest`);
   for (let i = 1; i < benches.length; i++) {
     const performanceRatio = benches[0].hz / benches[i].hz;

@@ -3,7 +3,8 @@
     "build-js": "cd subjects/js-example && npm install",
     "build-neon": "cd subjects/neon-example && neon build --release",
     "build-wasm-pack": "cd subjects/wasm-pack-example && wasm-pack build --target nodejs --scope wix --out-name index",
-    "build-subjects": "npm run build-js && npm run build-neon && npm run build-wasm-pack",
+    "build-assemblyscript": "cd subjects/assemblyscript-example && npm run asbuild",
+    "build-subjects": "npm run build-js && npm run build-neon && npm run build-wasm-pack && npm run build-assemblyscript",
     "bench": "node suites.js"
   },
   "dependencies": {
