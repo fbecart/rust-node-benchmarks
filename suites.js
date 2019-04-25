@@ -7,7 +7,8 @@ const subjects = {
 };
 
 const benchedFunctions = {
-  'sum': subject => subject.sum(1, 2),
+  'sum': s => s.sum(1, 2),
+  'sha1': s => s.sha1('pls-sha1-me'),
 };
 
 // add tests
@@ -26,6 +27,6 @@ for (const functionName of Object.keys(benchedFunctions)) {
       console.log('Fastest is ' + this.filter('fastest').map('name'));
     });
 
-  // run async
-  suite.run({ 'async': true });
+  // run
+  suite.run();
 }

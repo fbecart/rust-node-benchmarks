@@ -1,8 +1,19 @@
+extern crate crypto;
+
 use wasm_bindgen::prelude::*;
+use self::crypto::digest::Digest;
+use self::crypto::sha1::Sha1;
 
 #[wasm_bindgen]
 pub fn sum(a: usize, b: usize) -> usize {
-  a + b
+    a + b
+}
+
+#[wasm_bindgen]
+pub fn sha1(data: &str) -> String {
+    let mut hasher = Sha1::new();
+    hasher.input_str(data);
+    hasher.result_str()
 }
 
 #[cfg(test)]
