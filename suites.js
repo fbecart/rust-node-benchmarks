@@ -12,6 +12,7 @@ const subjects = {
 const benchedFunctions = {
   'sum': s => s.sum(1, 2),
   'sha1': s => s.sha1('pls-sha1-me'),
+  'fibonacci': s => s.fibonacci(10000),
 };
 
 for (const functionName of Object.keys(benchedFunctions)) {

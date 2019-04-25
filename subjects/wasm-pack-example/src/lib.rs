@@ -16,6 +16,17 @@ pub fn sha1(data: &str) -> String {
     hasher.result_str()
 }
 
+#[wasm_bindgen]
+pub fn fibonacci(n: usize) -> i32 {
+    let (mut a, mut b) = (1, 1);
+    for _i in 0..n {
+        let sum = a + b;
+        a = b;
+        b = sum;
+    }
+    b
+}
+
 #[cfg(test)]
 mod tests {
     use crate::sum;

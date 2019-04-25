@@ -24,8 +24,20 @@ fn sha1(mut cx: FunctionContext) -> JsResult<JsString> {
     Ok(cx.string(hex))
 }
 
+fn fibonacci(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    let n = cx.argument::<JsNumber>(0)?.value() as usize;
+    let (mut a, mut b) = (1, 1);
+    for _i in 0..n {
+        let sum = a + b;
+        a = b;
+        b = sum;
+    }
+    Ok(cx.number(b))
+}
+
 register_module!(mut cx, {
     cx.export_function("hello", hello)?;
     cx.export_function("sum", sum)?;
-    cx.export_function("sha1", sha1)
+    cx.export_function("sha1", sha1)?;
+    cx.export_function("fibonacci", fibonacci)
 });
